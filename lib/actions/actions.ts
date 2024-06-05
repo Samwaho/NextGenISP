@@ -128,9 +128,8 @@ export const createMikrotik = async (data: MikrotikProps) => {
     const loggedUser = await getLoggedInUser();
 
     const user = await getUserById(loggedUser.email);
-    console.log(".............user by email...........\n", user);
+
     const agencyId = user.documents[0].agency.$id;
-    console.log(".......agency id.......\n", agencyId);
 
     const newMikrotik = await database.createDocument(
       DATABASE_ID!,
@@ -144,7 +143,6 @@ export const createMikrotik = async (data: MikrotikProps) => {
         agency: agencyId,
       }
     );
-    console.log("...........created mikrotik.........\n", newMikrotik);
 
     if (!newMikrotik) throw new Error("Failed to create Mikrotik");
     return parseStringify(newMikrotik);

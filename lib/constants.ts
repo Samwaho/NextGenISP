@@ -18,7 +18,7 @@ export const sidebarData = [
   {
     title: "User management",
     icon: FiUsers,
-    path: "/main/network",
+    path: "network",
   },
   {
     title: "Financial management",

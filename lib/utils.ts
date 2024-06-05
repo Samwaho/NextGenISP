@@ -5,7 +5,10 @@ import { z } from "zod";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
+export function bytesToGB(bytes: number): string {
+  const gb = bytes / 1024 ** 3;
+  return `${gb.toFixed(2)} GB`;
+}
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 
 export const signInFormSchema = z.object({
