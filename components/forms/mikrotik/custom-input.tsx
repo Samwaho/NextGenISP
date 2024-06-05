@@ -1,17 +1,18 @@
 import { Control } from "react-hook-form";
+
+import { mikrotikSchema } from "@/lib/utils";
+import { z } from "zod";
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { signUpFormSchema } from "@/lib/utils";
-import { z } from "zod";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 type Props = {
-  control: Control<z.infer<typeof signUpFormSchema>>;
+  control: Control<z.infer<typeof mikrotikSchema>>;
   name: string;
   label: string;
   placeholder: string;

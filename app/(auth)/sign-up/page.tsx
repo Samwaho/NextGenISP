@@ -7,7 +7,7 @@ import Link from "next/link";
 const SignUp = () => {
   return (
     <AuroraBackground>
-      <section className="flex min-h-[100dvh] items-center justify-center px-4 py-12 dark:bg-gray-950">
+      <section className="flex min-h-[100dvh] items-center justify-center px-4 py-12 ">
         <div className="mx-auto w-full max-w-lg space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50">

@@ -13,12 +13,12 @@ export const sidebarData = [
   {
     title: "Network management",
     icon: PiNetworkLight,
-    path: "/network",
+    path: "/main/network",
   },
   {
     title: "User management",
     icon: FiUsers,
-    path: "/network",
+    path: "/main/network",
   },
   {
     title: "Financial management",

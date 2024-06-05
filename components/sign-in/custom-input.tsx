@@ -24,7 +24,7 @@ const CustomInput = ({ control, name, label, placeholder }: Props) => {
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className="dark:text-white">{label}</FormLabel>
           <FormControl>
             <Input
               placeholder={placeholder}

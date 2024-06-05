@@ -63,7 +63,7 @@ const config = {
         body_light: "#e5e7eb",
         body_dark: "#111827",
         card_light: "#f9fafb",
-        card_dark: "#030712",
+        card_dark: "#03101F",
       },
       borderRadius: {
         lg: "var(--radius)",

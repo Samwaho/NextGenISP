@@ -30,3 +30,16 @@ export const signUpFormSchema = z.object({
   domain: z.string(),
   phone: z.string(),
 });
+
+export const mikrotikSchema = z.object({
+  name: z.string().min(3, {
+    message: "Name must contain atleast 3 characters",
+  }),
+  ipAddress: z.string().ip(),
+  password: z.string().min(3, {
+    message: "Password must contain atleast 3 characters",
+  }),
+  username: z.string().min(3, {
+    message: "Username must contain atleast 3 characters",
+  }),
+});

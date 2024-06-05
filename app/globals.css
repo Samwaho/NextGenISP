@@ -42,7 +42,7 @@
       --card: 222.2 84% 4.9%;
       --card-foreground: 210 40% 98%;
 
-      --popover: 222.2 84% 4.9%;
+      --popover: 212, 82%, 7%;
       --popover-foreground: 210 40% 98%;
 
       --primary: 210 40% 98%;
@@ -73,9 +73,6 @@
     body {
       @apply bg-background text-foreground;
     }
-    section {
-      z-index: 1000;
-    }
     .bg-gradient-custom {
       @apply bg-gradient-to-tl from-pink-500 to-purple-600;
     }
@@ -87,5 +84,8 @@
       background: rgb(17 24 39 / 1);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+    }
+    section {
+      z-index: 1000;
     }
   }
