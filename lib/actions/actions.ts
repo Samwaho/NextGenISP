@@ -41,6 +41,16 @@ export const signIn = async (data: SigninProps) => {
       data.email,
       data.password
     );
+
+    cookies().set("appwrite-session", user.secret, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+    });
+
+    console.log(user);
+
     return parseStringify(user);
   } catch (error) {
     console.log("🚀 ~ signIn ~ error:", error);

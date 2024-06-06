@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { getMikrotiks } from "@/lib/actions/actions";
-import { fetchMikrotikSystemResources } from "@/lib/actions/mikrotik";
+import { fetchMikrotik } from "@/lib/actions/mikrotik";
 import { bytesToGB } from "@/lib/utils";
 import { ActivityIcon, ClockIcon } from "lucide-react";
 import { redirect } from "next/navigation";
@@ -17,9 +17,9 @@ const page = async () => {
     username: mikrotiks.documents[0].username,
     password: mikrotiks.documents[0].password,
     ipAddress: mikrotiks.documents[0].ipAddress,
+    endpoint: "system/resource",
   };
-  const resources = await fetchMikrotikSystemResources(data);
-
+  const resources = await fetchMikrotik(data);
   const resourceData = {
     cpu: resources.cpu,
     buildTime: resources["build-time"],
@@ -34,6 +34,13 @@ const page = async () => {
     writeSectTotal: resources["write-sect-total"],
     writeSectSinceReboot: resources["write-sect-since-reboot"],
   };
+
+  const activeConnections = await fetchMikrotik({
+    ...data,
+    endpoint: "ppp/active",
+  });
+  console.log(activeConnections);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       <Card>

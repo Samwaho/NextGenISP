@@ -10,6 +10,8 @@ type Props = {
 
 const layout = async ({ children }: Props) => {
   const loggedInUser = await getLoggedInUser();
+  console.log(loggedInUser);
+
   if (!loggedInUser) {
     return redirect("/sign-in");
   }
