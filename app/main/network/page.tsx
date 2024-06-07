@@ -1,3 +1,5 @@
+import { columns } from "@/components/network/activeConnections/columns";
+import { DataTable } from "@/components/network/activeConnections/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { getMikrotiks } from "@/lib/actions/actions";
@@ -42,95 +44,109 @@ const page = async () => {
   console.log(activeConnections);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>System Overview</CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          <div className="grid grid-cols-2 gap-2">
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Platform
+    <div className="p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>System Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Platform
+              </div>
+              <div className="font-medium">{resources.platform}</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Architecture
+              </div>
+              <div className="font-medium">
+                {resources[`architecture-name`]}
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                CPU
+              </div>
+              <div className="font-medium">{resourceData.cpu}</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Build Time
+              </div>
+              <div className="font-medium">{resourceData.buildTime}</div>
             </div>
-            <div className="font-medium">{resources.platform}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Architecture
-            </div>
-            <div className="font-medium">{resources[`architecture-name`]}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">CPU</div>
-            <div className="font-medium">{resourceData.cpu}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Build Time
-            </div>
-            <div className="font-medium">{resourceData.buildTime}</div>
-          </div>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Resource Utilization</CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          <div className="grid grid-cols-2 gap-2">
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              CPU Load
-            </div>
-            <div className="font-medium">
-              <Progress value={resourceData.cpuLoad} />
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Memory
-            </div>
-            <div className="font-medium">
-              <div className="flex items-center gap-2">
-                <p className="text-sm">
-                  {resourceData.availableMemory} / {resourceData.totalMemory}
-                </p>
-                <Progress value={50} />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Resource Utilization</CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                CPU Load
+              </div>
+              <div className="font-medium">
+                <Progress value={resourceData.cpuLoad} />
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Memory
+              </div>
+              <div className="font-medium">
+                <div className="flex items-center gap-2">
+                  <p className="text-sm">
+                    {resourceData.availableMemory} / {resourceData.totalMemory}
+                  </p>
+                  <Progress value={50} />
+                </div>
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Storage
+              </div>
+              <div className="font-medium">
+                <div className="flex items-center gap-2">
+                  <p className="text-sm">
+                    {resourceData.availableDisk} / {resourceData.totalDisk}
+                  </p>
+                  <Progress value={50} />
+                </div>
               </div>
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Storage
-            </div>
-            <div className="font-medium">
-              <div className="flex items-center gap-2">
-                <p className="text-sm">
-                  {resourceData.availableDisk} / {resourceData.totalDisk}
-                </p>
-                <Progress value={50} />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Uptime and Activity</CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Uptime
+              </div>
+              <div className="font-medium">
+                <ClockIcon className="w-4 h-4 inline-block mr-1" />
+                {resourceData.uptime}
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Write Sectors Total
+              </div>
+              <div className="font-medium">
+                <ActivityIcon className="w-4 h-4 inline-block mr-1" />
+                {resourceData.writeSectTotal}
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">
+                Write Sectors since reboot
+              </div>
+              <div className="font-medium">
+                <ActivityIcon className="w-4 h-4 inline-block mr-1" />
+                {resourceData.writeSectSinceReboot}
               </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
-      <Card>
+          </CardContent>
+        </Card>
+      </div>
+      <Card className="w-[60%] mt-6 ">
         <CardHeader>
-          <CardTitle>Uptime and Activity</CardTitle>
+          <CardTitle>Active Connections</CardTitle>
         </CardHeader>
-        <CardContent className="grid gap-4">
-          <div className="grid grid-cols-2 gap-2">
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Uptime
-            </div>
-            <div className="font-medium">
-              <ClockIcon className="w-4 h-4 inline-block mr-1" />
-              {resourceData.uptime}
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Write Sectors Total
-            </div>
-            <div className="font-medium">
-              <ActivityIcon className="w-4 h-4 inline-block mr-1" />
-              {resourceData.writeSectTotal}
-            </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">
-              Write Sectors since reboot
-            </div>
-            <div className="font-medium">
-              <ActivityIcon className="w-4 h-4 inline-block mr-1" />
-              {resourceData.writeSectSinceReboot}
-            </div>
-          </div>
+        <CardContent>
+          <DataTable columns={columns} data={activeConnections} />
         </CardContent>
       </Card>
     </div>

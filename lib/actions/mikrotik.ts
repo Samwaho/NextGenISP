@@ -18,6 +18,7 @@ export const fetchMikrotik = async (mikrotik: MikrotikProps) => {
           `${mikrotik.username}:${mikrotik.password}`
         )}`,
       },
+      next: { revalidate: 10 },
     }
   );
   const data = await response.json();
