@@ -22,6 +22,5 @@ export const fetchMikrotik = async (mikrotik: MikrotikProps) => {
     }
   );
   const data = await response.json();
-  console.log(data);
   return data;
 };

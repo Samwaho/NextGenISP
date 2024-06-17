@@ -41,10 +41,12 @@ const page = async () => {
     ...data,
     endpoint: "ppp/active",
   });
-  console.log(activeConnections);
 
   return (
-    <div className="p-6">
+    <div className="px-6">
+      <p className="font-semibold text-lg my-4">
+        <span className="font-normal opacity-80">page/ </span>Network Overview
+      </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card>
           <CardHeader>
