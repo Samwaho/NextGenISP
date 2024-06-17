@@ -52,8 +52,8 @@ const Sidebar = () => {
           </h4>
           <ArrowLeftFromLine
             onClick={() => setisDock(!isDock)}
-            strokeWidth={2.5}
-            className="cursor-pointer"
+            strokeWidth={2.2}
+            className={`cursor-pointer opacity-85 ${isDock && "rotate-180"}`}
           />
         </div>
         <div className="-ms-2 mt-4">
